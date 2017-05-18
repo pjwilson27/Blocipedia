@@ -47,6 +47,6 @@ Rails.application.configure do
   :domain => 'smtp.mailtrap.io',
   :port => '2525',
   :authentication => :cram_md5
-  }
+}
   
 end
