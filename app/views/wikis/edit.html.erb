@@ -1,0 +1,24 @@
+<h1>Edit Wiki</h1>
+
+<div class="col-md-8">
+    <%= form_for @wiki do |f| %>
+        <div class="form-group">
+            <%= f.label :title %>
+            <%= f.text_field :title, class: 'form-control', placeholder: "What is your wiki titled?" %>
+        </div>
+        <div class="form-group">
+            <%= f.label :body %>
+            <%= f.text_area :body, rows: 10, class: 'form-control', placeholder: "Put in some information about the Wiki" %>
+        </div>
+        <div class="form-group">
+            <%= f.submit "Update Wiki!", class: 'btn btn-success' %>
+        </div>
+        <% end %>
+    </div>
+</div>
+<div class="col-md-6">
+    <strong><ul>Reminders for posting new Wikis:</ul></strong>
+        <li>Admins have the right to delete at any time.</li>
+        <li>Keep the information true and factual. Fake news will be deleted.</li>
+        <li>Always update with the latest news, and CITE SOURCES!</li>
+</div>

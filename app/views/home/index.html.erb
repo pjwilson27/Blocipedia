@@ -5,10 +5,10 @@
     </div>
 </div>
 <div class="media-body">
-    <ul>With Blocipedia, you'll be able to:</ul>
+    <strong><ul>With Blocipedia, you'll be able to:</ul></strong>
         <li>Post new articles</li>
         <li>Update existing articles</li>
         <li>Contribute to a team and help others learn!</li>
     <h2>Get started now:</h2>
-    <button type = "button", class: 'btn btn-info'>Post A New Article</button> -- <button type = "button", class: 'btn btn-info'>Search our wiki library</button>
+    <%= link_to "Post A New Article", new_wiki_path, :class => 'button-links' %> -- <%= link_to "Search our wiki library", wikis_path, :class => 'button-links' %>
 </div>

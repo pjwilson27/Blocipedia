@@ -3,7 +3,7 @@ require 'faker'
 
 RSpec.describe WikiController, type: :controller do
   
-  let(:my_wiki) { Wiki.create!(title: "New Wiki Title", body: "Wiki Body", private: false) }
+  let(:my_wiki) { Wiki.create!(title: "New Wiki Title", body: "Wiki Body") }
 
   describe "GET #index" do
     it "returns http success" do

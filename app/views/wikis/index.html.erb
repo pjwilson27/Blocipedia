@@ -1,0 +1,4 @@
+<ul>All Available Wikis</ul>
+    <% @wikis.each do |w| %>
+    <li><%= link_to w.title, w %></li>
+<% end %>
