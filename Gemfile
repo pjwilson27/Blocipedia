@@ -29,6 +29,10 @@ gem 'devise'
 
 gem 'pundit'
 
+gem 'stripe'
+
+gem 'figaro', '1.0'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
