@@ -40,11 +40,11 @@
   <h3>Update My Membership</h3>
   <% if current_user.standard? %>
     <p>You are currently enrolled in Blocipedia as a <strong><u><%= "#{current_user.role}" %></strong></u> member, to change your membership, please click below.</p>
-    <%= button_to "Upgrade to premium", new_charge_path %>
+    <%= link_to "Upgrade to premium", new_charge_path %>
     
   <% else %>
     <p>Premium not working for you? Unsubscribe.</p>
-    <%= button_to "Unsubscribe", unsub_path %>
+    <%= link_to "Unsubscribe", unsub_path %>
     
   <% end %>
 </div>

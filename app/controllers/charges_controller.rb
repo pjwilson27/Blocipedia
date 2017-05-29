@@ -16,9 +16,9 @@ class ChargesController < ApplicationController
             currency: 'usd'
         )
  
-        flash[:notice] = "Thanks for all the money, #{current_user.email}! Feel free to pay me again."
+        flash[:success] = "Thanks for all the money, #{current_user.email}! Feel free to pay me again."
         current_user.update_attribute(:role, 'premium')
-        redirect_to user_path(current_user) # or wherever
+        redirect_to edit_user_registration_path # or wherever
  
         # Stripe will send back CardErrors, with friendly messages
         # when something goes wrong.
@@ -38,11 +38,8 @@ class ChargesController < ApplicationController
     end
     
     def unsub
-        customer = Stripe::Customer.retrieve(current_user.customer_id)
-
-        subscription_id = customer.subscriptions.data.first.id
-        customer.subscriptions.retrieve(subscription_id).delete
-        current_user.update_attributes(:role, 'standard')
-        current_user.make_wikis_public
+        flash[:success] = "Your subscription has been cancelled..Thank you for your patronage."
+        current_user.update_attribute(:role, 'standard')
         redirect_to edit_user_registration_path
+    end
 end
