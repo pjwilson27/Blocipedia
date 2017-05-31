@@ -38,8 +38,11 @@ class ChargesController < ApplicationController
     end
     
     def unsub
+        wiki_up = current_user.Wiki.find(params[:id])
+        
         flash[:success] = "Your subscription has been cancelled..Thank you for your patronage."
         current_user.update_attribute(:role, 'standard')
+        current_user.wiki_up.update_all(private: false)
         redirect_to edit_user_registration_path
     end
 end
