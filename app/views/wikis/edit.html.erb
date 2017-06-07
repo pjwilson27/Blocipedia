@@ -1,5 +1,11 @@
 <h1>Edit Wiki</h1>
 
+<div class="row">
+    <% if @wiki.private? %>
+        <strong><h3>This Wiki is private.</h3></strong>
+    <% end %>
+</div>
+
 <div class="col-md-8">
     <%= form_for @wiki do |f| %>
         <div class="form-group">
