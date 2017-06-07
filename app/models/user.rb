@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
   has_many :wikis
   
+  
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -13,16 +14,8 @@ class User < ActiveRecord::Base
     self.role ||= :standard
   end
   
-  def find_private
-    self.wikis.where(:private, true)
-  end
-  
   def set_to_public
-    self.wikis.each do |x|
-      if x.find_private
-        x.update_attribute(:private, false)
-      end
-    end
+   self.wikis.update_all(private: false)
   end
          
 end

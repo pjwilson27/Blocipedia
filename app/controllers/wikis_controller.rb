@@ -1,9 +1,11 @@
 class WikisController < ApplicationController
   def index
-    if current_user.standard?
-      @wikis = Wiki.where(private: false || nil)
-    else
+    if current_user.premium?
       @wikis = Wiki.all
+    end
+    
+    if current_user.standard?
+      @wikis = Wiki.where(private: false)
     end
   end
 
@@ -17,6 +19,7 @@ class WikisController < ApplicationController
   
   def create
     @wiki = Wiki.create(wiki_params)
+    @wiki.user_id = current_user.id 
     
     if @wiki.save
       flash[:notice] = "You've successfully posted a Wiki!"
