@@ -38,8 +38,8 @@ class ChargesController < ApplicationController
     end
     
     def unsub
-        current_user.set_to_public
         current_user.update_attribute(:role, 'standard')
+        current_user.set_to_public
         flash[:success] = "Your subscription has been cancelled..Thank you for your patronage."
         
         redirect_to edit_user_registration_path

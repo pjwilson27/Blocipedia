@@ -13,9 +13,13 @@ class User < ActiveRecord::Base
     self.role ||= :standard
   end
   
+  def find_private
+    self.wikis.where(:private, true)
+  end
+  
   def set_to_public
-    wikis.each do |x|
-      if x.private?
+    self.wikis.each do |x|
+      if x.find_private
         x.update_attribute(:private, false)
       end
     end
