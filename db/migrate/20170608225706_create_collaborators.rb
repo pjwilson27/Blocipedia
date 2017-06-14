@@ -3,6 +3,5 @@ class CreateCollaborators < ActiveRecord::Migration
     create_table :collaborators do |t|
 
       t.timestamps null: false
-    end
   end
 end

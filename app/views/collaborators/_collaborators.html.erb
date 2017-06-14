@@ -1,23 +1,23 @@
 <div class="container">
     <% if current_user.admin? || current_user.premium? %>
     <div class="TBD">
-        <%= form_tag wiki_collaborators_path, method: :post do %>
+        <%= form_tag wiki_collaborators_path(wiki_id: @wiki.id), method: :post do %>
             <%= text_field_tag :email %>
             <%= hidden_field_tag :wiki_id, @wiki.id %>
             <%= submit_tag "Add As A Collaborator" %>
         <% end %>
         
         </br>
-        
-        <% if @wiki.users.any? %>
+        <div class="collab-container">
             <h3>Currently Collaborating:</h3>
-            <% @wiki.collaborators.each do |collab| %>
-                <p><%= collab.user.email %></p>
-                
+                <% if @wiki.user.any? %>
+                    <% @wiki.collaborators.each do |collab| %>
+                        <p><%= collab.user.email %></p>
+                    <% end %>
+                <% end %>
                 <% if @wiki.user == current_user %>
-                <%= link_to "Remove", wiki_collaborator_path(user_id: @user.id, wiki_id: @wiki.id), method: :delte %>
-            <% end %>
-        <% end %>
+                    <%= link_to "", [collaborator], method: :delete, class: 'glyphicon glyphicon-remove' %>
+        </div>
     <% end %>
     </div>
     <% end %>
