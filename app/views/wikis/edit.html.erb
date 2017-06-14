@@ -15,7 +15,7 @@
         </div>
         <% end %>
         <% if current_user.admin? || current_user.premium? || @wiki.users.include?(current_user) %>
-            <%= render partial: 'collaborators/form' %>
+            <%= render partial: 'collaborators/collaborators', locals: { wiki: @wiki, user: current_user } %>
         <% end %>
         
 </div>

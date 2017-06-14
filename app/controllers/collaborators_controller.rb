@@ -1,26 +1,35 @@
 class CollaboratorsController < ApplicationController
     
-    before_action :wiki_set
-    
-    
-    def new
-        @collaborator = Collaborator.new
-    end
-    
     def create
-        @collaborator = Collaborator.new(wiki_id: @wiki_id, user_id: params[:user_id])
+        @wiki = Wiki.find(params[:wiki_id])
         
-        if @collaborator.save
-            flash[:notice] = "You've added a new collaborator!"
-            redirect_to @wiki
+        @user = User.where(email: params[:email]).take
+        
+        if @user == nil
+            flash[:error] = "Collaborator was not found. Please refine your search."
+            redirect_to edit_wiki_path(@wiki)
+        elsif @wiki.collaborators.include?(@user)
+            flash[:error] = "This collaborator already exists."
+            redirect_to edit_wiki_path(@wiki)
         else
-            flash[:error] = "There was a problem..Try again later."
-            render :show
+            collaborator = @wiki.collaborators.build(user_id: @user.id)
+            
+            if collaborator.save
+                flash[:notice] = "Your collaborator has been added!"
+                redirect_to edit_wiki_path(@wiki)
+            else
+                flash[:error] = "Collaborator couldn't be added..Try again."
+                redirect_to edit_wiki_path(@wiki)
+            end
         end
+    end
+            
     end
     
     def destroy
         @collaborator = Collaborator.find(params[:id])
+        @wiki = @collaborator.wiki
+        
         
         if @collaborator.destroy
             flash[:notice] = "You've deleted a collaborator from the wiki."
@@ -29,12 +38,6 @@ class CollaboratorsController < ApplicationController
             flash[:error] = "There was a problem...Try again later."
             render :show
         end
-    end
-    
-    private
-    
-    def wiki_set
-        @wiki = Wiki.find(params[:wiki_id])
     end
     
 end
