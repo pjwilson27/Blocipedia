@@ -1,4 +1,4 @@
 <strong><ul>All Wikis</ul></strong>
     <% @wikis.each do |w| %>
-        <li><%= link_to w.title, w %></li>
+        <li><%= link_to w.title, w %>  <sm><em>-- by User #<%= w.user_id %></em></sm></li>
 <% end %>

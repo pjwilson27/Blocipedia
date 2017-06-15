@@ -1,6 +1,10 @@
 class WikisController < ApplicationController
   def index
-    @wikis = policy_scope(Wiki)
+      if current_user == nil
+        @wikis = Wiki.visible_to_all
+      else
+        @wikis = policy_scope(Wiki)
+      end
   end
 
   def show
