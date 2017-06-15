@@ -15,8 +15,8 @@
                         <p><%= collab.user.email %></p>
                     <% end %>
                 <% end %>
-                <% if @wiki.user == current_user %>
-                    <%= link_to "", [collaborator], method: :delete, class: 'glyphicon glyphicon-remove' %>
+                <% if @wiki.user_id == current_user.id %>
+                    <%= link_to "X", wiki_collaborator_path, method: :delete, class: 'glyphicon glyphicon-remove', data: {confirm: 'Are you sure you want to delete this collaborator?'}%>
         </div>
     <% end %>
     </div>
