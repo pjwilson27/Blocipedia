@@ -2,9 +2,9 @@ Rails.application.routes.draw do
 
   get 'users/index'
 
-  resources :wikis do
-    resources :collaborators, only: [:create, :destroy]
-  end
+  resources :wikis
+  
+  resources :collaborators, only: [:create, :destroy]
   
   resources :charges, only: [:new, :create]
   

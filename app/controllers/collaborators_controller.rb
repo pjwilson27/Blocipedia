@@ -27,13 +27,13 @@ class CollaboratorsController < ApplicationController
     end
     
     def destroy
-        @collaborator = Collaborator.find(params[:id])
+        @collaborator = Collaborator.find(params[:collab_id])
         @wiki = @collaborator.wiki
         
         
         if @collaborator.destroy
             flash.now[:notice] = "You've deleted a collaborator from the wiki."
-            redirect_to @wiki
+            redirect_to edit_wiki_path(@wiki)
         else
             flash.now[:error] = "There was a problem...Try again later."
             render :show
